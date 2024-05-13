@@ -60,9 +60,7 @@ WORKDIR /app/helloworld
 
 RUN source "$HOME/.sdkman/bin/sdkman-init.sh" \
   && grails create-controller greeting \
-  && ls -lisah \
-  && ls -lisah grails-app/controllers/helloworld/ \
-  && cat grails-app/controllers/helloworld/GreetingController.groovy
+  && sed -i 's/def index() {/def index() {\n    render "HelloWorld"/g' grails-app/controllers/helloworld/GreetingController.groovy
 
 EXPOSE 8000
 
